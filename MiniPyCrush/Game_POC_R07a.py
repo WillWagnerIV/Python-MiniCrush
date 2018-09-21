@@ -86,7 +86,7 @@ class POCGame(arcade.Window):
     def setup(self):
         
         # Set up the player     
-        self.player_sprite = arcade.Sprite("Final_Project/character.png", SPRITE_SCALING_PLAYER)
+        self.player_sprite = arcade.Sprite("MiniPyCrush/Images/character.png", SPRITE_SCALING_PLAYER)
         self.player_sprite.center_x = 30
         self.player_sprite.center_y = 50
         self.player_sprite.score = 0
@@ -465,7 +465,7 @@ class MSphere():
         # super().__init__(position_x, position_y, change_x, change_y)
 
         # Make it a Sprite
-        self.sphere_sprite = arcade.Sprite("Final_Project/sphere.png", SPRITE_SCALING_SPHERE)
+        self.sphere_sprite = arcade.Sprite("MiniPyCrush/Images/sphere.png", SPRITE_SCALING_SPHERE)
         
         # Take the parameters of the init function above, and create instance variables out of them.
         self.sphere_sprite.center_x = center_x
@@ -503,7 +503,7 @@ class MCube():
         # super().__init__(position_x, position_y, change_x, change_y)
 
         # Make it a Sprite
-        self.cube_sprite = arcade.Sprite("Final_Project/cube.png", SPRITE_SCALING_SPHERE)
+        self.cube_sprite = arcade.Sprite("MiniPyCrush/Images/cube.png", SPRITE_SCALING_SPHERE)
         
         # Take the parameters of the init function above, and create instance variables out of them.
         self.cube_sprite.center_x = center_x
@@ -531,7 +531,7 @@ class MTri():
         # super().__init__(position_x, position_y, change_x, change_y)
 
         # Make it a Sprite
-        self.tri_sprite = arcade.Sprite("Final_Project/tri.png", SPRITE_SCALING_SPHERE)
+        self.tri_sprite = arcade.Sprite("MiniPyCrush/Images/tri.png", SPRITE_SCALING_SPHERE)
         
         # Take the parameters of the init function above, and create instance variables out of them.
         self.tri_sprite.center_x = center_x
@@ -577,11 +577,11 @@ class Wall():
         # Create the Wall instance
         # wall image from kenney.nl
         if permanent:
-            self.wall_sprite = arcade.Sprite("Final_Project/pwall.png", SPRITE_SCALING_WALL)
+            self.wall_sprite = arcade.Sprite("MiniPyCrush/Images/pwall.png", SPRITE_SCALING_WALL)
             self.wall_sprite.hp = 10000
             print('Added pwall')
         else:
-            self.wall_sprite = arcade.Sprite("Final_Project/twall.png", SPRITE_SCALING_WALL)
+            self.wall_sprite = arcade.Sprite("MiniPyCrush/Images/twall.png", SPRITE_SCALING_WALL)
             self.wall_sprite.hp = 1000
 
         self.wall_sprite.center_x = center_x
@@ -602,10 +602,10 @@ class Floor():
         
         # Create the floor instance                         
         if permanent:
-            self.floor_sprite = arcade.Sprite("Final_Project/pfloor.png", SPRITE_SCALING_FLOOR)
+            self.floor_sprite = arcade.Sprite("MiniPyCrush/Images/pfloor.png", SPRITE_SCALING_FLOOR)
             self.floor_sprite.hp = 50000
         else:
-            self.floor_sprite = arcade.Sprite("Final_Project/tfloor.png", SPRITE_SCALING_FLOOR)
+            self.floor_sprite = arcade.Sprite("MiniPyCrush/Images/tfloor.png", SPRITE_SCALING_FLOOR)
             self.floor_sprite.hp = 10000
 
         # Position the Floor
@@ -616,7 +616,7 @@ class Final_Objective():
     def __init__(self, center_x, center_y):
         
         # Create the Final_Objective instance                         
-        self.objective_sprite = arcade.Sprite("Final_Project/coin_01.png", SPRITE_SCALING_PLAYER)
+        self.objective_sprite = arcade.Sprite("MiniPyCrush/Images/coin_01.png", SPRITE_SCALING_PLAYER)
         self.objective_sprite.hp = 50000
           
         # Position the objective
