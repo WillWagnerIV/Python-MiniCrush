@@ -1,15 +1,11 @@
 # Will Wagner
-# IST341 Final Project - Shapes Game POC
-# 4-20-2018
+# Crushy Shapes Game POC
 
 import arcade
 import random
+from scripts import buildingmaker
 
 # Constants
-
-SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 600
-
 SPRITE_SCALING_GROUND = .28
 SPRITE_SCALING_FLOOR = 1
 SPRITE_SCALING_WALL = 1
@@ -24,19 +20,7 @@ MOVEMENT_SPEED = 1.35
 JUMP_SPEED = 1.25
 GRAVITY = 0.1
 
-# Global Variables
 
-building_width = 18
-building_height = 8
-
-floor_width = 60
-
-wall_height = 60 
-
-master_solidity = 25   # suggested scale between 1 and 100
-
-building_solidity = 1   # suggested scale by decimals to increase number of permanent walls.  
-                        # ex: .8 = fewer permanent walls.  1.2 = more permanent walls
 
 class POCGame(arcade.Window):
     """
@@ -81,12 +65,16 @@ class POCGame(arcade.Window):
         # Physics engine
         self.physics_engine = None
 
+        
+
     # ==============      END INIT      ===============
     # ==============      START SETUP      ===============
     def setup(self):
+
+        print('setup Self = '+ str(self))
         
         # Set up the player     
-        self.player_sprite = arcade.Sprite("MiniPyCrush/Images/character.png", SPRITE_SCALING_PLAYER)
+        self.player_sprite = arcade.Sprite("images/character.png", SPRITE_SCALING_PLAYER)
         self.player_sprite.center_x = 30
         self.player_sprite.center_y = 50
         self.player_sprite.score = 0
@@ -99,52 +87,8 @@ class POCGame(arcade.Window):
         self.up_arrow = False
         self.down_arrow = False
 
-        # =========  Create the Ground and Building  ========================
-        building_width = int((SCREEN_WIDTH - 200 ) / floor_width)
-
-        # =======  Objective  ======      Place Objective
-        center_x = building_width * floor_width + 70
-        center_y = building_height * wall_height - 10
-        self.spawn_objective(center_x,center_y)
-
-        # =======  Ground  ======        Build all Permanent Floors
-        for x in range(building_width + 10):
-            # Position the floor
-            center_x = (x * floor_width)
-            center_y = (wall_height/2)
-            self.spawn_floor(center_x,center_y)
-
-        # =======  Building  ======       Build Walls                         |   |   |   |   |   |   |   |   |
-
-        for y in range(building_height):
-            for x in range(building_width + 1):
-
-                # Randomize some Gaps for doors
-                a_door = random.randint(0, 3)
-                print(a_door)
-                if a_door >= 1:
-
-                    # Position the wall
-                    center_x = (x * floor_width) + 100
-                    center_y = (y * wall_height) + 50
-                    self.spawn_wall(center_x,center_y)
-
-        # =======  Building  ======      Build Floors                          =======-----=-=-------=====-=====--
-
-        for y in range(building_height):            
-            for x in range(building_width):
-
-                # Randomize some Gaps for stairs
-                a_stair = random.randint(0, 5)
-                print(a_stair)
-                if a_stair <= 3:
-
-                    # Position the floor
-                    center_x = (x * floor_width) + 130
-                    center_y = (y * wall_height) + 80
-                    self.spawn_floor(center_x,center_y)
-
-        self.walls_built = True
+        #Make Building
+        MakeBuilding(self)
 
         # Set the background color
         arcade.set_background_color(arcade.color.AMAZON)
@@ -363,9 +307,11 @@ class POCGame(arcade.Window):
         print('Spawned a floor at: ' + str(center_x) + '  ' + str(center_y))
 
     def spawn_objective(self , center_x , center_y ):
+        print ('Spawn Objective Self = ' + str(self))
         objective = Final_Objective(center_x,center_y)
         self.objectives_list.append(objective.objective_sprite)
         print('Spawned Objective at: ' + str(center_x) + '  ' + str(center_y)) 
+
 
 
     # =========================             Handle Keyboard Input                ===================
@@ -629,7 +575,7 @@ class Final_Objective():
 
 def main():
     """ Main method """
-    game = POCGame(SCREEN_WIDTH, SCREEN_HEIGHT)
+    game = POCGame(buildingmaker.MakeBuilding().SCREEN_WIDTH, buildingmaker.MakeBuilding().SCREEN_HEIGHT)
     game.setup()
     arcade.run()
 
